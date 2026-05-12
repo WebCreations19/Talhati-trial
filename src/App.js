@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  /*const handleSubmit = (e) => {
     e.preventDefault();
     setSubmissions(prev => [...prev, formData]);
     setFormData({
@@ -27,6 +28,40 @@ function App() {
       number: '',
       message: ''
     });
+  };*/
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const response = await axios.post(
+        "http://api.awintoursandtravels.com/api/contact",
+        formData
+      );
+
+      console.log(response.data);
+
+      alert("Form submitted successfully!");
+
+      setSubmissions(prev => [...prev, formData]);
+
+      setFormData({
+        name: '',
+        email: '',
+        number: '',
+        message: ''
+      });
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert("Something went wrong!");
+
+    }
+
   };
 
   return (
