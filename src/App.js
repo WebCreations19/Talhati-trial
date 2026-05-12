@@ -37,7 +37,7 @@ function App() {
     try {
 
       const response = await axios.post(
-        "http://api.awintoursandtravels.com/api/contact",
+        "https://api.awintoursandtravels.com/api/contact",
         formData
       );
 
